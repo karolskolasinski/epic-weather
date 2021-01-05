@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './Root.module.css';
-
+import style from './Root.module.scss';
+import Option from '../../components/Option/Option';
 
 const initialStateItems = [
     {
@@ -23,7 +23,9 @@ class Root extends React.Component {
         return (
             <>
                 <div className={style.wrapper}>
-                    <main className={[style.day]}>HELLO</main>
+                    <main className={[style.day]}>
+                        <Option cities={initialStateItems} />
+                    </main>
                 </div>
             </>
         );

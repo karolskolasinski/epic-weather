@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Select.module.scss';
 
 
-const Select = ({ items, cities }) => {
+const Select = ({ items, cities, select }) => {
     return cities ? (
         <select className={styles} defaultValue={'select city'} onChange={e => {
-            console.log(e.target.value);
+            select(e.target.value);
         }}>
             <option key='empty' value={'select city'} disabled>select city</option>
             {items.map(item => (
@@ -13,9 +13,11 @@ const Select = ({ items, cities }) => {
             ))}
         </select>
     ) : (
-        <select className={styles}>
+        <select className={styles} onChange={e => {
+            select(e.target.value);
+        }}>
             {items.map(item => (
-                <option key={item.provider}>{item.provider}</option>
+                <option key={item.provider} value={item.provider}>{item.provider}</option>
             ))}
         </select>
 

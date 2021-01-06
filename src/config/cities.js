@@ -1,12 +1,12 @@
 const cities = [
     {
-        option: 'Rome'
+        city: 'Rome'
     },
     {
-        option: 'Tokio'
+        city: 'Tokio'
     },
     {
-        option: 'New York'
+        city: 'New York'
     },
 ];
 

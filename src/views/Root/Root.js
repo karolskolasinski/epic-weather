@@ -18,8 +18,8 @@ class Root extends React.Component {
             <>
                 <div className={style.wrapper}>
                     <main className={[style.day]}>
-                        <Select items={cities} />
-                        <Select items={providers} providers />
+                        <Select items={cities} cities/>
+                        <Select items={providers} />
 
                         <div>location</div>
                         <div>{dateBuilder(new Date())}</div>

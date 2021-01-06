@@ -2,20 +2,23 @@ import React from 'react';
 import styles from './Select.module.scss';
 
 
-const Select = ({ items, providers }) => {
-    return providers ? (
-        <select className={styles}>
+const Select = ({ items, cities }) => {
+    return cities ? (
+        <select className={styles} defaultValue={'select city'} onChange={e => {
+            console.log(e.target.value);
+        }}>
+            <option key='empty' value={'select city'} disabled>select city</option>
             {items.map(item => (
-                <option defaultValue={'openweathermap'} key={item.option}>{item.option}</option>
+                <option key={item.city} value={item.city}>{item.city}</option>
             ))}
         </select>
     ) : (
-        <select className={styles} value='empty'>
-            <option value={'empty'} key='empty' disabled>select city</option>
+        <select className={styles}>
             {items.map(item => (
-                <option key={item.option}>{item.option}</option>
+                <option key={item.provider}>{item.provider}</option>
             ))}
         </select>
+
     );
 }
 

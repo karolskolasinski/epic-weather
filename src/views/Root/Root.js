@@ -9,19 +9,26 @@ import dateBuilder from '../../config/dateBuilder';
 class Root extends React.Component {
     state = {
         cities: [...cities],
+        currentCity: '',
         provider: providers[0],
     };
 
-    selectCity = (city) => {
-        this.state.provider.fetchWeather(city);
+    selectCity = async (selectedCity) => {
+        await this.state.provider.fetchWeather(selectedCity);
+        await this.setState({ currentCity: selectedCity });
     }
 
-    selectProvider = (selectedProvider) => {
-        this.setState({
-            provider: providers.find(el => {
-                return el.name === selectedProvider
-            }),
-        });
+    selectProvider = async (selectedProvider) => {
+        await this.setState({
+                provider: providers.find(el => {
+                    return el.name === selectedProvider
+                }),
+            },
+        );
+
+        if (this.state.currentCity !== '') {
+            await this.state.provider.fetchWeather(this.state.currentCity);
+        }
     }
 
     render() {

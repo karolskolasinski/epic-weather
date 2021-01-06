@@ -1,6 +1,6 @@
 const cities = [
     {
-        city: 'Rome'
+        city: 'London'
     },
     {
         city: 'Tokio'

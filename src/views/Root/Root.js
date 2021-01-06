@@ -12,12 +12,14 @@ class Root extends React.Component {
     };
 
     render() {
+        console.log(this.state.cities);
+
         return (
             <>
                 <div className={style.wrapper}>
                     <main className={[style.day]}>
                         <Select items={cities} />
-                        <Select items={providers} providers/>
+                        <Select items={providers} providers />
 
                         <div>location</div>
                         <div>{dateBuilder(new Date())}</div>

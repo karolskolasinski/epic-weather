@@ -1,22 +1,14 @@
 import React from 'react';
 import style from './Root.module.scss';
-import Option from '../../components/Option/Option';
-
-const initialStateItems = [
-    {
-        city: 'Rome'
-    },
-    {
-        city: 'Tokio'
-    },
-    {
-        city: 'New York'
-    },
-];
+import Select from '../../components/Select/Select';
+import cities from '../../config/cities';
+import providers from '../../config/providers';
+import dateBuilder from '../../config/dateBuilder';
 
 class Root extends React.Component {
     state = {
-        items: [...initialStateItems],
+        cities: [...cities],
+        providers: [...providers],
     };
 
     render() {
@@ -24,12 +16,18 @@ class Root extends React.Component {
             <>
                 <div className={style.wrapper}>
                     <main className={[style.day]}>
-                        <Option cities={initialStateItems} />
+                        <Select items={cities} />
+                        <Select items={providers} providers/>
+
+                        <div>location</div>
+                        <div>{dateBuilder(new Date())}</div>
+                        <div>°C</div>
+                        <div>description</div>
                     </main>
                 </div>
             </>
         );
-    }
+    };
 }
 
 export default Root;

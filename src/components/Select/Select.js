@@ -17,7 +17,7 @@ const Select = ({ items, cities, select }) => {
             select(e.target.value);
         }}>
             {items.map(item => (
-                <option key={item.provider} value={item.provider}>{item.provider}</option>
+                <option key={item.name} value={item.name}>{item.name}</option>
             ))}
         </select>
 

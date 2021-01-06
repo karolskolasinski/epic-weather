@@ -13,18 +13,18 @@ class Root extends React.Component {
     };
 
     selectCity = (city) => {
-        console.log(city);
+        this.state.provider.fetchWeather(city);
     }
 
-    selectProvider = (provider) => {
+    selectProvider = (selectedProvider) => {
         this.setState({
-            provider: providers.filter(obj => obj.provider === provider)[0],
+            provider: providers.find(el => {
+                return el.name === selectedProvider
+            }),
         });
-        console.log(this.state.provider);
     }
 
     render() {
-
         return (
             <>
                 <div className={style.wrapper}>
@@ -32,6 +32,7 @@ class Root extends React.Component {
                         <Select items={cities} cities select={this.selectCity} />
                         <Select items={providers} select={this.selectProvider} />
 
+                        <div>{this.state.provider.name}</div>
                         <div>location</div>
                         <div>{dateBuilder(new Date())}</div>
                         <div>°C</div>

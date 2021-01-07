@@ -4,23 +4,22 @@ import styles from './Select.module.scss';
 
 const Select = ({ items, cities, select }) => {
     return cities ? (
-        <select className={styles} defaultValue={'select city'} onChange={e => {
+        <select className={styles.select} defaultValue={'select city'} onChange={e => {
             select(e.target.value);
         }}>
-            <option key='empty' value={'select city'} disabled>select city</option>
+            <option className={styles.option} key='empty' value={'select city'} disabled>select city</option>
             {items.map(item => (
-                <option key={item.city} value={item.city}>{item.city}</option>
+                <option className={styles.option} key={item.city} value={item.city}>{item.city}</option>
             ))}
         </select>
     ) : (
-        <select className={styles} onChange={e => {
+        <select className={styles.select} onChange={e => {
             select(e.target.value);
         }}>
             {items.map(item => (
-                <option key={item.name} value={item.name}>{item.name}</option>
+                <option className={styles.option} key={item.name} value={item.name}>{item.name}</option>
             ))}
         </select>
-
     );
 }
 

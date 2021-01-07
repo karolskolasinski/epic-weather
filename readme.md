@@ -1,9 +1,9 @@
 Korzystając z publicznie dostępnych usług sieciowych, stwórz aplikację, która będzie pobierała i wyświetlała w dowolnym miejscu strony informację na temat pogody w wybranym przez użytkownika mieście.
 
-####Aplikacja powinna umożliwiać:
+#### Aplikacja powinna umożliwiać:
 - Sprawdzenie przez każdego użytkownika stanu aktualnej pogody w wybranym z przedefiniowanej listy mieście. W wypadku braku połączenia z zewnętrznymi usługami, wyświetlony powinien być ostatni stan pogody. Aplikacja powinna umożliwiać odświeżenie informacji pogodowych bez przeładowania strony.
 
-####Dla ograniczonej grupy użytkowników aplikacja powinna umożliwiać:
+#### Dla ograniczonej grupy użytkowników aplikacja powinna umożliwiać:
 - Konfigurację adresu usługi sieciowej wykorzystywanej do pobierania danych pogodowych(np.yahoo).
 - Edycję listy miast(dodawanie,usuwanie, zmiana) dla których możliwe jest sprawdzenie pogody
 

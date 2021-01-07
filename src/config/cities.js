@@ -8,6 +8,9 @@ const cities = [
     {
         city: 'New York'
     },
+    {
+        city: 'Minsk'
+    },
 ];
 
 export default cities;

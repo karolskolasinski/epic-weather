@@ -5,7 +5,6 @@ import cities from '../../config/cities';
 import providers from '../../config/providers';
 import dateBuilder from '../../config/dateBuilder';
 
-
 class Root extends React.Component {
     state = {
         cities: [...cities],
@@ -13,7 +12,7 @@ class Root extends React.Component {
         provider: providers[0],
         location: '',
         temperature: '',
-        description: '',
+        description: 'Please select city to fetch latest forecast :)',
         timeOfDay: 'day',
     };
 
@@ -38,7 +37,6 @@ class Root extends React.Component {
     }
 
     async setForecastData(forecast) {
-        await console.log(forecast);
         await this.setState({
             location: forecast[0],
             temperature: forecast[1],
@@ -51,15 +49,14 @@ class Root extends React.Component {
         return (
             <>
                 <div className={this.state.timeOfDay === 'day' ? style.wrapperDay : style.wrapperNight}>
-                    <main className={[style.day]}>
+                    <main className={this.state.timeOfDay === 'day' ? style.day : style.night}>
                         <Select items={cities} cities select={this.selectCity} />
                         <Select items={providers} select={this.selectProvider} />
 
-                        <div>{this.state.location}</div>
-                        <div>{dateBuilder(new Date())}</div>
-                        <div>{this.state.temperature}</div>
-                        <div>{this.state.description}</div>
-                        <div>{this.state.timeOfDay}</div>
+                        <div className={style.location}>{this.state.location}</div>
+                        <div className={style.date}>{dateBuilder(new Date())}</div>
+                        <div className={this.state.currentCity !== '' ? style.temperature : ''}>{this.state.temperature}</div>
+                        <div className={style.description}>{this.state.description}</div>
                     </main>
                 </div>
             </>

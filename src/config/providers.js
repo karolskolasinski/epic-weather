@@ -12,16 +12,19 @@ const providers = [
         apiKey: '3cf166d1c772fa916a78a5a31dfd1b03',
         baseUrl: 'https://api.openweathermap.org/data/2.5/',
         fetchWeather(city) {
-            //example URL: http://api.weatherstack.com/current?access_key=412cf69596a07f8fb091a8ff21b1f5ed&query=tokyo
+            //example URL: https://api.openweathermap.org/data/2.5/weather?q=tokyo&units=metric&APPID=3cf166d1c772fa916a78a5a31dfd1b03
             return fetch(`${this.baseUrl}weather?q=${city}&units=metric&APPID=${this.apiKey}`)
                 .then(res => res.json())
                 .then(result => {
+                    const localtime = result.dt;
+                    const sunset = result.sys.sunset;
+                    const sunrise = result.sys.sunrise;
 
                     return [
                         result.name,
                         `${result.main.temp.toFixed(1)}°C`,
                         result.weather[0].description,
-                        (result.dt < result.sys.sunset) ? 'day' : 'night',
+                        (localtime < sunset) ? (localtime < sunrise) ? 'night' : 'day' : 'night',
                     ];
                 });
         }
@@ -31,18 +34,19 @@ const providers = [
         apiKey: '65fe2082e6ec43e4af4101843210701',
         baseUrl: 'http://api.weatherapi.com/v1/',
         fetchWeather(city) {
-            //example URL: http://api.weatherapi.com/v1/forecast.json?key=65fe2082e6ec43e4af4101843210701&q=Tokyo&days=1
+            //example URL: http://api.weatherapi.com/v1/forecast.json?key=65fe2082e6ec43e4af4101843210701&q=tokyo&days=1
             return fetch(`${this.baseUrl}forecast.json?key=${this.apiKey}&q=${city}&days=1`)
                 .then(res => res.json())
                 .then(result => {
+                    const localtime = new Date(result.location.localtime).getTime();
+                    const sunset = new Date(result.forecast.forecastday[0].date + ' ' + result.forecast.forecastday[0].astro.sunset).getTime();
+                    const sunrise = new Date(result.forecast.forecastday[0].date + ' ' + result.forecast.forecastday[0].astro.sunrise).getTime();
 
                     return [
                         result.location.name,
                         `${result.current.temp_c.toFixed(1)}°C`,
                         result.current.condition.text,
-                        (new Date(result.location.localtime).getTime() <
-                            new Date(result.forecast.forecastday[0].date + ' ' + result.forecast.forecastday[0].astro.sunset).getTime()
-                        ) ? 'day' : 'night',
+                        (localtime < sunset) ? (localtime < sunrise) ? 'night' : 'day' : 'night',
                     ]
                 });
         }

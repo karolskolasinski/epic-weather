@@ -3,11 +3,20 @@ const providers = [
         name: 'openweathermap',
         apiKey: '3cf166d1c772fa916a78a5a31dfd1b03',
         baseUrl: 'https://api.openweathermap.org/data/2.5/',
+        /*the function must return an array that contains, in order:
+        * forecast[0] = location;
+        * forecast[1] = temperature;
+        * forecast[2] = weather description;
+        * */
         fetchWeather(city) {
-            fetch(`${this.baseUrl}weather?q=${city}&units=metric&APPID=${this.apiKey}`)
+            return fetch(`${this.baseUrl}weather?q=${city}&units=metric&APPID=${this.apiKey}`)
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result);
+                    return [
+                        result.name,
+                        `${result.main.temp.toFixed(1)}°C`,
+                        result.weather[0].description
+                    ];
                 });
         }
     },

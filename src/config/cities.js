@@ -3,7 +3,7 @@ const cities = [
         city: 'London'
     },
     {
-        city: 'Tokio'
+        city: 'Tokyo'
     },
     {
         city: 'New York'

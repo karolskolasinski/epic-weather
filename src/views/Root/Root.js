@@ -11,10 +11,20 @@ class Root extends React.Component {
         cities: [...cities],
         currentCity: '',
         provider: providers[0],
+        location: '',
+        temperature: '',
+        description: '',
     };
 
     selectCity = async (selectedCity) => {
-        await this.state.provider.fetchWeather(selectedCity);
+        const forecast = await this.state.provider.fetchWeather(selectedCity);
+
+        await this.setState({
+            location: forecast[0],
+            temperature: forecast[1],
+            description: forecast[2],
+        })
+
         await this.setState({ currentCity: selectedCity });
     }
 
@@ -39,11 +49,10 @@ class Root extends React.Component {
                         <Select items={cities} cities select={this.selectCity} />
                         <Select items={providers} select={this.selectProvider} />
 
-                        <div>{this.state.provider.name}</div>
-                        <div>location</div>
+                        <div>{this.state.location}</div>
                         <div>{dateBuilder(new Date())}</div>
-                        <div>°C</div>
-                        <div>description</div>
+                        <div>{this.state.temperature}</div>
+                        <div>{this.state.description}</div>
                     </main>
                 </div>
             </>

@@ -14,17 +14,12 @@ class Root extends React.Component {
         location: '',
         temperature: '',
         description: '',
+        timeOfDay: 'day',
     };
 
     selectCity = async (selectedCity) => {
         const forecast = await this.state.provider.fetchWeather(selectedCity);
-
-        await this.setState({
-            location: forecast[0],
-            temperature: forecast[1],
-            description: forecast[2],
-        })
-
+        await this.setForecastData(forecast);
         await this.setState({ currentCity: selectedCity });
     }
 
@@ -37,14 +32,24 @@ class Root extends React.Component {
         );
 
         if (this.state.currentCity !== '') {
-            await this.state.provider.fetchWeather(this.state.currentCity);
+            const forecast = await this.state.provider.fetchWeather(this.state.currentCity);
+            await this.setForecastData(forecast);
         }
+    }
+
+    async setForecastData(forecast) {
+        await this.setState({
+            location: forecast[0],
+            temperature: forecast[1],
+            description: forecast[2],
+            timeOfDay: forecast[3],
+        })
     }
 
     render() {
         return (
             <>
-                <div className={style.wrapper}>
+                <div className={this.state.timeOfDay === 'day' ? style.wrapperDay : style.wrapperNight}>
                     <main className={[style.day]}>
                         <Select items={cities} cities select={this.selectCity} />
                         <Select items={providers} select={this.selectProvider} />
@@ -53,6 +58,7 @@ class Root extends React.Component {
                         <div>{dateBuilder(new Date())}</div>
                         <div>{this.state.temperature}</div>
                         <div>{this.state.description}</div>
+                        <div>{this.state.timeOfDay}</div>
                     </main>
                 </div>
             </>

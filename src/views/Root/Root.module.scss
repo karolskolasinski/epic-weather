@@ -10,7 +10,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.wrapper {
+.wrapperDay {
     height: 100vh;
     width: 100vw;
     display: -ms-flexbox;
@@ -19,6 +19,11 @@ body {
     justify-content: center;
     -ms-flex-align: center;
     align-items: center;
+    background-color: coral;
+}
+
+.wrapperNight {
+    background-color: cornflowerblue;
 }
 
 main {

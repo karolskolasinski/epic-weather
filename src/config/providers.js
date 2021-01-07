@@ -32,9 +32,9 @@ const providers = [
     {
         name: 'weatherapi',
         apiKey: '65fe2082e6ec43e4af4101843210701',
-        baseUrl: 'http://api.weatherapi.com/v1/',
+        baseUrl: 'https://api.weatherapi.com/v1/',
         fetchWeather(city) {
-            //example URL: http://api.weatherapi.com/v1/forecast.json?key=65fe2082e6ec43e4af4101843210701&q=tokyo&days=1
+            //example URL: https://api.weatherapi.com/v1/forecast.json?key=65fe2082e6ec43e4af4101843210701&q=tokyo&days=1
             return fetch(`${this.baseUrl}forecast.json?key=${this.apiKey}&q=${city}&days=1`)
                 .then(res => res.json())
                 .then(result => {

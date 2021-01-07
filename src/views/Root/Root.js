@@ -4,6 +4,8 @@ import Select from '../../components/Select/Select';
 import cities from '../../config/cities';
 import providers from '../../config/providers';
 import dateBuilder from '../../config/dateBuilder';
+import firebase from 'firebase';
+import AuthPanel from '../../components/AuthPanel/AuthPanel';
 
 class Root extends React.Component {
     state = {
@@ -20,12 +22,12 @@ class Root extends React.Component {
         const forecast = await this.state.provider.fetchWeather(selectedCity);
         await this.setForecastData(forecast);
         await this.setState({ currentCity: selectedCity });
-    }
+    };
 
     selectProvider = async (selectedProvider) => {
         await this.setState({
                 provider: providers.find(el => {
-                    return el.name === selectedProvider
+                    return el.name === selectedProvider;
                 }),
             },
         );
@@ -34,7 +36,7 @@ class Root extends React.Component {
             const forecast = await this.state.provider.fetchWeather(this.state.currentCity);
             await this.setForecastData(forecast);
         }
-    }
+    };
 
     async setForecastData(forecast) {
         await this.setState({
@@ -42,7 +44,7 @@ class Root extends React.Component {
             temperature: forecast[1],
             description: forecast[2],
             timeOfDay: forecast[3],
-        })
+        });
     }
 
     render() {
@@ -55,8 +57,11 @@ class Root extends React.Component {
 
                         <div className={style.location}>{this.state.location}</div>
                         <div className={style.date}>{dateBuilder(new Date())}</div>
-                        <div className={this.state.currentCity !== '' ? style.temperature : ''}>{this.state.temperature}</div>
+                        <div className={this.state.currentCity !== '' ? style.temperature : ''}>
+                            {this.state.temperature}
+                        </div>
                         <div className={style.description}>{this.state.description}</div>
+                        <AuthPanel />
                     </main>
                 </div>
             </>

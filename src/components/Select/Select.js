@@ -21,6 +21,6 @@ const Select = ({ items, cities, select }) => {
             ))}
         </select>
     );
-}
+};
 
 export default Select;

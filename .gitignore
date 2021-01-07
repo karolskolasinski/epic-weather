@@ -25,4 +25,5 @@ yarn-error.log*
 .eslintcache
 *.iml
 
-/.netlify
+.netlify/
+.idea/

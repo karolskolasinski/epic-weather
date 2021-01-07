@@ -38,6 +38,7 @@ class Root extends React.Component {
     }
 
     async setForecastData(forecast) {
+        await console.log(forecast);
         await this.setState({
             location: forecast[0],
             temperature: forecast[1],

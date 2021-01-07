@@ -27,18 +27,22 @@ const providers = [
         }
     },
     {
-        name: 'weatherstack',
-        apiKey: '412cf69596a07f8fb091a8ff21b1f5ed',
-        baseUrl: 'http://api.weatherstack.com/',
+        name: 'weatherapi',
+        apiKey: '65fe2082e6ec43e4af4101843210701',
+        baseUrl: 'http://api.weatherapi.com/v1/',
         fetchWeather(city) {
-            //example URL: https://api.openweathermap.org/data/2.5/weather?q=tokyo&units=metric&APPID=3cf166d1c772fa916a78a5a31dfd1b03
-            return fetch(`${this.baseUrl}current?access_key=${this.apiKey}&query=${city}`)
+            //example URL: http://api.weatherapi.com/v1/forecast.json?key=65fe2082e6ec43e4af4101843210701&q=Tokyo&days=1
+            return fetch(`${this.baseUrl}forecast.json?key=${this.apiKey}&q=${city}&days=1`)
                 .then(res => res.json())
                 .then(result => {
+
                     return [
-                        result.request.query,
-                        `${result.current.temperature.toFixed(1)}°C`,
-                        result.current.weather_descriptions[0]
+                        result.location.name,
+                        `${result.current.temp_c.toFixed(1)}°C`,
+                        result.current.condition.text,
+                        (new Date(result.location.localtime).getTime() <
+                            new Date(result.forecast.forecastday[0].date + ' ' + result.forecast.forecastday[0].astro.sunset).getTime()
+                        ) ? 'day' : 'night',
                     ]
                 });
         }

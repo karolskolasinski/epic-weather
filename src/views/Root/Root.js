@@ -79,6 +79,7 @@ class Root extends React.Component {
                 this.setState({
                     isLoggedIn: false,
                     buttonText: 'Login with Google',
+                    provider: providers[0],
                 });
             }).catch((error) => {
             console.log(error);

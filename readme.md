@@ -1,3 +1,20 @@
+### Epic Weather
+
+Aplikacja została napisane w React.js. umożliwia sprawdzenie pogody dla predefiniowanych miast bez konieczności przeładowania strony. Wykorzystuje zewnętrzne API - pobiera dane i wyświetla je na stornie. 
+
+Istnieje opcja zalogowania się do aplikacji poprzez konto Google. Logowanie obsługiwane jest przez Firebase. Po zalogowaniu się pojawia się opcja wyboru dostawcy usługi API. 
+
+W zależności od pory dnia (wschód/zachód) we wskazanym mieście zmienia się tło oraz obrazek. 
+
+- code: https://github.com/karolskolasinski/epic-weather
+- live: https://epic-weather-demo.netlify.app/
+- live-backup: https://epic-weather-demo.herokuapp.com/
+
+
+<hr>
+
+### Zadanie
+
 Korzystając z publicznie dostępnych usług sieciowych, stwórz aplikację, która będzie pobierała i wyświetlała w dowolnym miejscu strony informację na temat pogody w wybranym przez użytkownika mieście.
 
 #### Aplikacja powinna umożliwiać:

@@ -10,4 +10,5 @@ const dateBuilder = (date) => {
     return `${weekday}, ${day} ${month} ${year}`;
 }
 
+
 export default dateBuilder;
